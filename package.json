@@ -10,7 +10,9 @@
     "start:3": "npm run build:all && node build/day-3/index.js",
     "debug": "npm run build:all && node dist/index.js --inspect",
     "lint": "eslint src/**/*.ts",
-    "format": "eslint src/**/*.ts --fix",
+    "lint:fix": "eslint --fix src/**/*.ts ",
+    "format:check": "prettier --check src/**/*.ts",
+    "format:write": "prettier --write src/**/*.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -21,6 +23,8 @@
     "@typescript-eslint/eslint-plugin": "^6.13.2",
     "@typescript-eslint/parser": "^6.13.2",
     "eslint": "^8.55.0",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.1.0",
     "rimraf": "5.0.5",
     "typescript": "5.3.3"
   }
