@@ -1,0 +1,26 @@
+{
+  "name": "advent-of-code-23",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:all": "rimraf ./build && tsc",
+    "start:1": "npm run build:all && node build/day-1/index.js",
+    "start:2": "npm run build:all && node build/day-2/index.js",
+    "start:3": "npm run build:all && node build/day-3/index.js",
+    "lint": "eslint src/**/*.ts",
+    "format": "eslint src/**/*.ts --fix",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "20.10.4",
+    "@typescript-eslint/eslint-plugin": "^6.13.2",
+    "@typescript-eslint/parser": "^6.13.2",
+    "eslint": "^8.55.0",
+    "rimraf": "5.0.5",
+    "typescript": "5.3.3"
+  }
+}
