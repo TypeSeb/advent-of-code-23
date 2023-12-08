@@ -14,7 +14,11 @@
 			"program": "${workspaceFolder}/src/index.ts",
 			"outFiles": [
 				"${workspaceFolder}/**/*.js"
-			]
+			],
+			"preLaunchTask": "npm: build:all",
+			"sourceMaps": true,
+			"smartStep": true,
+			"internalConsoleOptions": "openOnSessionStart"
 		}
 	]
 }
