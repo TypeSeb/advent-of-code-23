@@ -9,6 +9,7 @@
     "start:2": "npm run build:all && node build/day-2/index.js",
     "start:3": "npm run build:all && node build/day-3/index.js",
     "start:4": "npm run build:all && node build/day-4/index.js",
+    "start:5": "npm run build:all && node build/day-5/index.js",
     "debug": "npm run build:all && node dist/index.js --inspect",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint --fix src/**/*.ts ",
