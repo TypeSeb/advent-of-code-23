@@ -1,6 +1,6 @@
 import { input } from './input'
 
-const cardRanking = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A']
+const cardRanking = ['J', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'Q', 'K', 'A']
 
 enum HandType {
   HIGH_CARD,
@@ -18,16 +18,19 @@ type Hand = {
   bid: number
 }
 
-function getHandType(hand: string): HandType {
-  const tmp: Record<string, number> = {}
+function getBestHand(hand: string): HandType {
+  const tmpHand: Record<string, number> = {}
   let handType = HandType.HIGH_CARD
 
   for (const card of hand) {
-    if (tmp[card] === undefined) tmp[card] = 1
-    else tmp[card] = tmp[card] + 1
+    if (tmpHand[card] === undefined) tmpHand[card] = 1
+    else tmpHand[card] = tmpHand[card] + 1
   }
 
-  for (const count of Object.values(tmp)) {
+  const jokers = tmpHand['J']
+  delete tmpHand['J']
+
+  for (const count of Object.values(tmpHand)) {
     if (count === 2) {
       if (handType === HandType.HIGH_CARD) handType = HandType.ONE_PAIR
       else if (handType === HandType.ONE_PAIR) handType = HandType.TWO_PAIR
@@ -44,17 +47,33 @@ function getHandType(hand: string): HandType {
     if (count === 5) handType = HandType.FIVE_OF_A_KIND
   }
 
+  if (jokers < 5) {
+    let maxKey: { key: string; cnt: number } = { key: 'J', cnt: 0 }
+
+    for (const card in tmpHand) {
+      if (tmpHand[card] > maxKey.cnt) maxKey = { key: card, cnt: tmpHand[card] }
+      if (
+        tmpHand[card] === maxKey.cnt &&
+        cardRanking.findIndex((x) => x === card) > cardRanking.findIndex((x) => x === maxKey.key)
+      )
+        maxKey = { key: card, cnt: tmpHand[card] }
+    }
+
+    const bestHand = hand.replace(new RegExp('J', 'g'), maxKey.key)
+    return getBestHand(bestHand)
+  } else if (jokers === 5) return HandType.FIVE_OF_A_KIND
+
   return handType
 }
 
-export function first() {
+export function second() {
   const hands: Hand[] = []
 
   input.forEach((handInput) => {
     const hand = handInput.split(' ')[0]
     const bid = +handInput.split(' ')[1]
 
-    const type = getHandType(hand)
+    const type = getBestHand(hand)
 
     hands.push({ hand, bid, type })
   })
