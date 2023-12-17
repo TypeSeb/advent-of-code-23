@@ -14,6 +14,7 @@
     "start:7": "npm run build:all && node build/day-7/index.js",
     "start:8": "npm run build:all && node build/day-8/index.js",
     "start:9": "npm run build:all && node build/day-9/index.js",
+    "start:10": "npm run build:all && node build/day-10/index.js",
     "debug": "npm run build:all && node dist/index.js --inspect",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint --fix src/**/*.ts ",
