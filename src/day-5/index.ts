@@ -1,5 +1,5 @@
 import { first } from './first'
-import { second } from './second-optimized'
+import { second } from './second'
 
 first()
 second()

@@ -1,4 +1,7 @@
-import { input } from './input'
+import { readFileSync } from 'fs'
+import path from 'path'
+
+const input = readFileSync(path.join(__dirname, '../../src/day-6', 'input.txt'), 'utf-8').split('\n')
 
 export function first() {
   const times = input[0].match(/\d+/g)!.map(Number)

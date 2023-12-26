@@ -1,4 +1,9 @@
-import { input } from './input'
+import { readFileSync } from 'fs'
+import path from 'path'
+
+const input = readFileSync(path.join(__dirname, '../../src/day-8', 'input.txt'), 'utf-8')
+  .split('\n')
+  .filter((x) => x.length > 1)
 
 type MappedLine = {
   key: string

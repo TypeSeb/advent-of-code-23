@@ -1,4 +1,7 @@
-import { input } from './input'
+import { readFileSync } from 'fs'
+import path from 'path'
+
+const input = readFileSync(path.join(__dirname, '../../src/day-7', 'input.txt'), 'utf-8').split('\n')
 
 const cardRanking = ['J', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'Q', 'K', 'A']
 

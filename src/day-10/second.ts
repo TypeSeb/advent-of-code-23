@@ -1,4 +1,7 @@
-import { input } from './input'
+import { readFileSync } from 'fs'
+import path from 'path'
+
+const input = readFileSync(path.join(__dirname, '../../src/day-10', 'input.txt'), 'utf-8').split('\n')
 
 const blueprint: Array<string> = []
 input.forEach((x) => blueprint.push(' '.repeat(x.length)))

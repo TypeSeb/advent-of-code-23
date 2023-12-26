@@ -1,4 +1,7 @@
-import { input } from '../day-13/input'
+import { readFileSync } from 'fs'
+import path from 'path'
+
+const input = readFileSync(path.join(__dirname, '../../src/day-13', 'input.txt'), 'utf-8').split('\n')
 
 function possibleMirror(puzzle: string[], idx: number): { idx: number; fixed: boolean } | undefined {
   let [forwardIdx, backwardIdx] = [idx, idx - 1]
@@ -64,7 +67,9 @@ export function second() {
   for (let i = 0; i < input.length; i++) {
     const line = input[i]
 
-    if (line.length === 0) {
+    if (line.length === 0 || i === input.length - 1) {
+      if (i === input.length - 1) puzzle.push(line)
+
       const cnt = analysePuzzle(puzzle) ?? 0
       sum += cnt
       puzzle = []

@@ -1,4 +1,7 @@
-import { partNumbers } from './input'
+import { readFileSync } from 'fs'
+import path from 'path'
+
+const partNumbers = readFileSync(path.join(__dirname, '../../src/day-3', 'input.txt'), 'utf-8').split('\n')
 
 function isDigit(charCode: number) {
   return charCode >= 0x30 && charCode <= 0x39

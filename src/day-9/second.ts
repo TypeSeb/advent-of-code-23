@@ -1,4 +1,7 @@
-import { input } from './input'
+import { readFileSync } from 'fs'
+import path from 'path'
+
+const input = readFileSync(path.join(__dirname, '../../src/day-9', 'input.txt'), 'utf-8').split('\n')
 
 function analyseNumbers(numbers: number[]): number {
   const diffs: number[] = []

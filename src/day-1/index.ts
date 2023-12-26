@@ -1,4 +1,5 @@
-import { input } from './input'
+import { readFileSync } from 'fs'
+import path from 'path'
 
 const numbersLookup = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
 
@@ -53,5 +54,6 @@ function getNumber(str: string): number {
 }
 
 let sum = 0
+const input = readFileSync(path.join(__dirname, '../../src/day-1', 'input.txt'), 'utf-8').split('\n')
 input.forEach((value) => (sum += getNumber(value)))
 console.log(sum)

@@ -1,4 +1,7 @@
-import { games } from './input'
+import { readFileSync } from 'fs'
+import path from 'path'
+
+const games = readFileSync(path.join(__dirname, '../../src/day-2', 'input.txt'), 'utf-8').split('\n')
 
 type CubeSet = { red: number; blue: number; green: number }
 type GameSet = { id: number; sets: CubeSet[] }

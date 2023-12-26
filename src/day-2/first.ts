@@ -1,4 +1,7 @@
-import { games } from './input'
+import { readFileSync } from 'fs'
+import path from 'path'
+
+const games = readFileSync(path.join(__dirname, '../../src/day-2', 'input.txt'), 'utf-8').split('\n')
 
 const toMatchSet: CubeSet = { red: 12, green: 13, blue: 14 }
 
