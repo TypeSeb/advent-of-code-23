@@ -34,10 +34,7 @@ function getMirrorIdx(puzzle: string[]): number | undefined {
 
 function analysePuzzle(puzzle: string[]) {
   const horizontal = getMirrorIdx(puzzle) ?? 0
-
-  const verticalPuzzle = getVerticalPuzzle(puzzle)
-
-  const vertical = getMirrorIdx(verticalPuzzle) ?? 0
+  const vertical = getMirrorIdx(getVerticalPuzzle(puzzle)) ?? 0
 
   return { horizontal, vertical }
 }
@@ -53,7 +50,7 @@ export function first() {
       const { horizontal, vertical } = analysePuzzle(puzzle)
       sum += horizontal * 100 + vertical
       puzzle = []
-    } else puzzle.push(line.replace(/\./g, '1').replace(/#/g, '2'))
+    } else puzzle.push(line)
   }
 
   console.log(sum)
