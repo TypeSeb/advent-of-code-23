@@ -13,41 +13,46 @@ enum Direction {
 function tilt(direction: Direction) {
   let sum = 0
 
-  if(direction === Direction.NORTH || direction === Direction.SOUTH) {
-    for(let x = 0; x < input[0].length; x++) {
+  if (direction === Direction.NORTH || direction === Direction.SOUTH) {
+    for (let x = 0; x < input[0].length; x++) {
       let line = ''
 
-      for(let y = 0; y < input.length; y++)
-        line = input[y][x] + line
+      for (let y = 0; y < input.length; y++) line = input[y][x] + line
 
-      const tilted = line.split('#').map(l => {
-        const roundedRockCnt = (l.match(/O/g) || []).length 
-        const roundedRocks = 'O'.repeat(roundedRockCnt)
-        const emptySpace = '.'.repeat(l.length - roundedRockCnt)
+      const tilted = line
+        .split('#')
+        .map((l) => {
+          const roundedRockCnt = (l.match(/O/g) || []).length
+          const roundedRocks = 'O'.repeat(roundedRockCnt)
+          const emptySpace = '.'.repeat(l.length - roundedRockCnt)
 
-        return (direction === Direction.NORTH) ? emptySpace + roundedRocks : roundedRocks + emptySpace
-      }).join('#')
+          return direction === Direction.NORTH ? emptySpace + roundedRocks : roundedRocks + emptySpace
+        })
+        .join('#')
 
-      for(let tiltedCnt = 0; tiltedCnt < tilted.length; tiltedCnt++) {
-        const rowCnt = (direction === Direction.NORTH) ? tiltedCnt + 1 : tilted.length - tiltedCnt 
-        if(tilted[tiltedCnt] === 'O') sum += rowCnt
+      for (let tiltedCnt = 0; tiltedCnt < tilted.length; tiltedCnt++) {
+        const rowCnt = direction === Direction.NORTH ? tiltedCnt + 1 : tilted.length - tiltedCnt
+        if (tilted[tiltedCnt] === 'O') sum += rowCnt
       }
     }
   }
 
-  if(direction === Direction.EAST || direction === Direction.WEST) {
-    input.forEach(line => {
-      const tilted = line.split('#').map(l => {
-        const roundedRockCnt = (l.match(/O/g) || []).length 
-        const roundedRocks = 'O'.repeat(roundedRockCnt)
-        const emptySpace = '.'.repeat(l.length - roundedRockCnt)
+  if (direction === Direction.EAST || direction === Direction.WEST) {
+    input.forEach((line) => {
+      const tilted = line
+        .split('#')
+        .map((l) => {
+          const roundedRockCnt = (l.match(/O/g) || []).length
+          const roundedRocks = 'O'.repeat(roundedRockCnt)
+          const emptySpace = '.'.repeat(l.length - roundedRockCnt)
 
-        return (direction === Direction.EAST) ? emptySpace + roundedRocks : roundedRocks + emptySpace
-      }).join('#')
+          return direction === Direction.EAST ? emptySpace + roundedRocks : roundedRocks + emptySpace
+        })
+        .join('#')
 
-      for(let tiltedCnt = 0; tiltedCnt < tilted.length; tiltedCnt++) {
-        const rowCnt = (direction === Direction.EAST) ? tiltedCnt + 1 : tilted.length - tiltedCnt 
-        if(tilted[tiltedCnt] === 'O') sum += rowCnt
+      for (let tiltedCnt = 0; tiltedCnt < tilted.length; tiltedCnt++) {
+        const rowCnt = direction === Direction.EAST ? tiltedCnt + 1 : tilted.length - tiltedCnt
+        if (tilted[tiltedCnt] === 'O') sum += rowCnt
       }
     })
   }
