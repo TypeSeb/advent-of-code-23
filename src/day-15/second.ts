@@ -22,7 +22,7 @@ function strHash(str: string): number {
   return hashResult
 }
 
-function foo(str: string) {
+function handleToken(str: string) {
   if (str.includes('=')) {
     const [toHash, lensLable] = str.split('=')
     const hash = strHash(toHash)
@@ -47,7 +47,7 @@ function foo(str: string) {
 }
 
 export function second() {
-  inputs.forEach((input) => foo(input))
+  inputs.forEach((input) => handleToken(input))
 
   let sum = 0
 
